@@ -1,0 +1,60 @@
+<h1>Afecciones</h1>
+<a href="/afecciones/nueva">+ Nueva afección</a>
+
+<table border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Síntomas</th>
+      <th>Descripción</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each afecciones}}
+      <tr>
+        <td>
+          {{#if this.image}}
+            <img src="{{this.image}}" alt="{{this.nombre}}" width="80" />
+          {{else}}
+            Sin imagen
+          {{/if}}
+        </td>
+        <td>{{this.nombre}}</td>
+        <td>
+          {{#each this.sintomas}}
+            <span>{{this}}</span>{{#unless @last}}, {{/unless}}
+          {{/each}}
+        </td>
+        <td>{{this.descripcion}}</td>
+        <td>
+          {{#if this.diagnostico}}
+            <span>✔ Diagnosticada</span>
+            <a href="/afecciones/{{this._id}}/diagnostico">Ver diagnóstico</a>
+          {{else}}
+            <a href="/afecciones/{{this._id}}/diagnostico">Diagnosticar por IA</a>
+          {{/if}}
+
+          <a href="/afecciones/{{this._id}}/editar">Editar</a>
+
+          <form action="/afecciones/{{this._id}}/eliminar" method="POST" style="display:inline"
+                onsubmit="return confirm('¿Eliminar esta afección?');">
+            <button type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    {{else}}
+      <tr><td colspan="5">Todavía no hay afecciones cargadas.</td></tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script>
+  document.querySelectorAll(".btn-diagnosticar").forEach((btn) => {
+    btn.addEventListener("click", () => { 
+      const id = btn.dataset.id; // TODO: acá llamaremos a la ruta que use la IA 
+      console.log("Diagnosticar afección:", id);
+    }); 
+  });
+</script>

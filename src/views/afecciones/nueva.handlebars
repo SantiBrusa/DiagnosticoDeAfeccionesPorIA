@@ -1,0 +1,33 @@
+<h1>Cargar Afecciones</h1>
+
+{{#if error}} <p>{{error}}</p> {{/if}}
+
+<form action="/afecciones" method="POST" enctype="multipart/form-data">
+  <input
+    type="text"
+    name="nombre"
+    value="{{valores.nombre}}"
+    placeholder="Ingresa tu nombre"
+    required
+  />
+
+  <input
+    type="text"
+    name="sintomas"
+    value="{{valores.sintomas}}"
+    placeholder="picazon, enrojecimiento, despelechamiento"
+    required
+  />
+
+  <textarea
+    name="descripcion"
+    rows="4"
+    required
+  >{{valores.descripcion}}</textarea>
+
+  <input type="file" name="image" accept="image/*" />
+
+  <button type="submit">Guardar</button>
+  <a href="/afecciones">Cancelar</a>
+
+</form>

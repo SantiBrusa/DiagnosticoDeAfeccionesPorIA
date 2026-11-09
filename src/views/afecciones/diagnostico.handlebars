@@ -1,0 +1,70 @@
+<h2>Diagnóstico</h2>
+<div id="diagnostico" data-id="{{afeccion._id}}"
+     data-existe="{{#if afeccion.diagnostico}}true{{else}}false{{/if}}">
+  {{#if afeccion.diagnostico}}
+    <p><strong>Posible afección:</strong> {{afeccion.diagnostico.afeccion}}</p>
+    <p><strong>Explicación:</strong> {{afeccion.diagnostico.explicacion}}</p>
+    <p><strong>Gravedad:</strong> {{afeccion.diagnostico.gravedad}}</p>
+    <p><strong>Recomendaciones:</strong> {{afeccion.diagnostico.recomendaciones}}</p>
+    <p><strong>Consultar médico:</strong>
+      {{#if afeccion.diagnostico.consultar_medico}}Sí{{else}}No{{/if}}</p>
+    <p><small>Diagnosticada el {{fechaDiagnostico}}</small></p>
+  {{else}}
+    Analizando con IA...
+  {{/if}}
+</div>
+
+<button type="button" id="btn-reintentar" {{#unless afeccion.diagnostico}}hidden{{/unless}}>
+  {{#if afeccion.diagnostico}}Volver a diagnosticar{{else}}Reintentar{{/if}}
+</button>
+
+<a href="/afecciones">Volver</a>
+
+<script>
+  const contenedor = document.getElementById("diagnostico");
+  const btn = document.getElementById("btn-reintentar");
+  const id = contenedor.dataset.id;
+
+  function mostrar(datos) {
+    contenedor.innerHTML = "";
+    const lineas = [
+      ["Posible afección", datos.afeccion],
+      ["Explicación", datos.explicacion],
+      ["Gravedad", datos.gravedad],
+      ["Recomendaciones", datos.recomendaciones],
+      ["Consultar médico", datos.consultar_medico ? "Sí" : "No"],
+      ["Diagnosticada el", new Date(datos.fecha).toLocaleString("es-AR")],
+    ];
+    lineas.forEach(([titulo, valor]) => {
+      const p = document.createElement("p");
+      const b = document.createElement("strong");
+      b.textContent = titulo + ": ";
+      p.append(b, document.createTextNode(valor));
+      contenedor.appendChild(p);
+    });
+  }
+
+  async function diagnosticar() {
+    contenedor.textContent = "Analizando con IA...";
+    btn.hidden = true;
+
+    try {
+      const res = await fetch(`/ia/diagnosticar/${id}`, { method: "POST" });
+      const datos = await res.json();
+      if (!res.ok) throw new Error(datos.error || "Error al diagnosticar");
+
+      mostrar(datos);
+      btn.textContent = "Volver a diagnosticar";
+    } catch (error) {
+      contenedor.textContent = "No se pudo diagnosticar: " + error.message;
+      btn.textContent = "Reintentar";
+    } finally {
+      btn.hidden = false;
+    }
+  }
+
+  btn.addEventListener("click", diagnosticar);
+
+  // Solo consulta a la IA si todavía no hay un diagnóstico guardado
+  if (contenedor.dataset.existe === "false") diagnosticar();
+</script>
