@@ -1,29 +1,47 @@
-<h1>Editar afección</h1>
+<div class="form-container">
+  <div class="form-header">
+    <h1 class="page-title">Editar Afección</h1>
+  </div>
 
-{{#if error}}<p style="color:red">{{error}}</p>{{/if}}
+  <div class="form-card">
+    {{#if error}}
+      <div class="error-msg">{{error}}</div>
+    {{/if}}
 
-<form action="/afecciones/{{afeccion._id}}/editar" method="POST" enctype="multipart/form-data">
-  <label>Nombre
-    <input type="text" name="nombre" value="{{afeccion.nombre}}" required>
-  </label>
+    <form action="/afecciones/{{afeccion._id}}/editar" method="POST" enctype="multipart/form-data" class="vipesan-form">
+      
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" value="{{afeccion.nombre}}" required>
+      </div>
 
-  <label>Síntomas (separados por coma)
-    <input type="text" name="sintomas" value="{{sintomasTexto}}" required>
-  </label>
+      <div class="form-group">
+        <label for="sintomas">Síntomas (separados por coma)</label>
+        <input type="text" id="sintomas" name="sintomas" value="{{sintomasTexto}}" required>
+      </div>
 
-  <label>Descripción
-    <textarea name="descripcion" rows="4" required>{{afeccion.descripcion}}</textarea>
-  </label>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required>{{afeccion.descripcion}}</textarea>
+      </div>
 
-  {{#if afeccion.image}}
-    <p>Imagen actual:</p>
-    <img src="{{afeccion.image}}" alt="{{afeccion.nombre}}" width="120">
-  {{/if}}
+      {{#if afeccion.image}}
+        <div class="form-group current-image-box">
+          <label>Imagen actual:</label>
+          <img src="{{afeccion.image}}" alt="{{afeccion.nombre}}" class="preview-img">
+        </div>
+      {{/if}}
 
-  <label>Cambiar imagen (opcional)
-    <input type="file" name="image" accept="image/*">
-  </label>
+      <div class="form-group file-group">
+        <label for="image">Cambiar imagen (opcional)</label>
+        <input type="file" id="image" name="image" accept="image/*" class="file-input">
+      </div>
 
-  <button type="submit">Guardar cambios</button>
-  <a href="/afecciones">Cancelar</a>
-</form>
+      <div class="form-actions">
+        <a href="/afecciones" class="btn-close">Cancelar</a>
+        <button type="submit" class="btn-save">Guardar cambios</button>
+      </div>
+
+    </form>
+  </div>
+</div>

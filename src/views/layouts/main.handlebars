@@ -1,21 +1,23 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>API Dermatológica - VIPESAN</title>
+    <link rel="stylesheet" href="/styles/style.css">
   </head>
   <body>
     {{#if usuario}}
-      <nav>
-        <a href="/">Home</a>
-        <div>
-          <a href="/afecciones">Afecciones</a>
-          <a href="/logout">Salir - {{usuario}}</a>
+      <nav class="main-nav">
+        <a href="/" class="nav-brand">Inicio</a>
+        <div class="nav-links">
+          <a href="/afecciones" class="nav-item">Afecciones</a>
+          <a href="/logout" class="nav-btn-logout">Salir ({{usuario}})</a>
         </div>
       </nav>
     {{/if}}
 
-    <main>
+    <main class="main-content">
       {{{body}}}
     </main>
   </body>

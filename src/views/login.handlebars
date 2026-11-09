@@ -1,13 +1,24 @@
-<div>
-  <form action="/login" method="POST">
+<div class="login-container">
+  <div class="login-card">
+    <!-- Poné el archivo del logo en public/images/logo.png -->
+    <img src="/images/logo.png" alt="VIPESAN Dermatológica" class="login-logo">
+    
+    <h2>Iniciar Sesión</h2>
 
-    <input type="text" name="usuario" placeholder="Usuario" required />
+    <form action="/login" method="POST" class="login-form">
+      <div class="input-group">
+        <input type="text" name="usuario" placeholder="Usuario" required />
+      </div>
 
-    <input type="password" name="clave" placeholder="Contraseña" required />
+      <div class="input-group">
+        <input type="password" name="clave" placeholder="Contraseña" required />
+      </div>
 
-    <button type="submit">Ingresar</button>
+      <button type="submit" class="btn-login">Ingresar</button>
+    </form>
 
-  </form>
-
-  {{#if error}}<p>{{error}}</p>{{/if}}
+    {{#if error}}
+      <p class="error-msg">{{error}}</p>
+    {{/if}}
+  </div>
 </div>

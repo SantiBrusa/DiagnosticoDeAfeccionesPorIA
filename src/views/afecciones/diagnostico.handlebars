@@ -1,24 +1,32 @@
-<h2>Diagnóstico</h2>
-<div id="diagnostico" data-id="{{afeccion._id}}"
-     data-existe="{{#if afeccion.diagnostico}}true{{else}}false{{/if}}">
-  {{#if afeccion.diagnostico}}
-    <p><strong>Posible afección:</strong> {{afeccion.diagnostico.afeccion}}</p>
-    <p><strong>Explicación:</strong> {{afeccion.diagnostico.explicacion}}</p>
-    <p><strong>Gravedad:</strong> {{afeccion.diagnostico.gravedad}}</p>
-    <p><strong>Recomendaciones:</strong> {{afeccion.diagnostico.recomendaciones}}</p>
-    <p><strong>Consultar médico:</strong>
-      {{#if afeccion.diagnostico.consultar_medico}}Sí{{else}}No{{/if}}</p>
-    <p><small>Diagnosticada el {{fechaDiagnostico}}</small></p>
-  {{else}}
-    Analizando con IA...
-  {{/if}}
+<div class="form-container">
+  <div class="form-header">
+    <h1 class="page-title">Diagnóstico por IA</h1>
+  </div>
+
+  <div class="form-card">
+    <div id="diagnostico" class="diagnostico-resultado" data-id="{{afeccion._id}}"
+        data-existe="{{#if afeccion.diagnostico}}true{{else}}false{{/if}}">
+      {{#if afeccion.diagnostico}}
+        <p><strong>Posible afección:</strong> {{afeccion.diagnostico.afeccion}}</p>
+        <p><strong>Explicación:</strong> {{afeccion.diagnostico.explicacion}}</p>
+        <p><strong>Gravedad:</strong> {{afeccion.diagnostico.gravedad}}</p>
+        <p><strong>Recomendaciones:</strong> {{afeccion.diagnostico.recomendaciones}}</p>
+        <p><strong>Consultar médico:</strong>
+          {{#if afeccion.diagnostico.consultar_medico}}Sí{{else}}No{{/if}}</p>
+        <p><small class="fecha-txt">Diagnosticada el {{fechaDiagnostico}}</small></p>
+      {{else}}
+        <div class="ia-loading">Analizando con IA...</div>
+      {{/if}}
+    </div>
+
+    <div class="form-actions">
+      <a href="/afecciones" class="btn-close">Volver</a>
+      <button type="button" id="btn-reintentar" class="btn-save" {{#unless afeccion.diagnostico}}hidden{{/unless}}>
+        {{#if afeccion.diagnostico}}Volver a diagnosticar{{else}}Reintentar{{/if}}
+      </button>
+    </div>
+  </div>
 </div>
-
-<button type="button" id="btn-reintentar" {{#unless afeccion.diagnostico}}hidden{{/unless}}>
-  {{#if afeccion.diagnostico}}Volver a diagnosticar{{else}}Reintentar{{/if}}
-</button>
-
-<a href="/afecciones">Volver</a>
 
 <script>
   const contenedor = document.getElementById("diagnostico");
@@ -45,7 +53,7 @@
   }
 
   async function diagnosticar() {
-    contenedor.textContent = "Analizando con IA...";
+    contenedor.innerHTML = '<div class="ia-loading">Analizando con IA...</div>';
     btn.hidden = true;
 
     try {
@@ -56,7 +64,7 @@
       mostrar(datos);
       btn.textContent = "Volver a diagnosticar";
     } catch (error) {
-      contenedor.textContent = "No se pudo diagnosticar: " + error.message;
+      contenedor.innerHTML = `<div class="error-msg">No se pudo diagnosticar: ${error.message}</div>`;
       btn.textContent = "Reintentar";
     } finally {
       btn.hidden = false;

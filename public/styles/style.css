@@ -1,0 +1,559 @@
+/* Palette basada en el logo de VIPESAN */
+:root {
+    --blue-dark: #071E3D;
+    --blue-brand: #0A2540;
+    --cyan-accent: #00A8CC;
+    --bg-gradient: linear-gradient(135deg, #eef2f5 0%, #d4e4ef 100%);
+    --white: #ffffff;
+    --text-dark: #1f2937;
+    --error-bg: #ffebe9;
+    --error-text: #d93025;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Esto fuerza a que la barra quede arriba y el contenido abajo */
+    align-items: center;
+    justify-content: flex-start;
+    padding: 7px 20px;
+}
+
+/* LOGIN */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 60px 20px 20px 20px;
+}
+
+/* Tarjeta central */
+.login-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.15);
+    text-align: center;
+    border-top: 5px solid var(--cyan-accent);
+}
+
+.login-logo {
+    max-width: 240px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.login-card h2 {
+    color: var(--blue-brand);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Formulario e Inputs */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--cyan-accent);
+    box-shadow: 0 0 0 3px rgba(0, 168, 204, 0.2);
+}
+
+/* Botón con hover en degrade al color del logo */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, var(--blue-brand) 0%, var(--cyan-accent) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.4);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+/* Mensaje de Error */
+.error-msg {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    border: 1px solid rgba(217, 48, 37, 0.2);
+}
+
+/* --- Barra de Navegación --- */
+.main-nav {
+    width: 100%;
+    max-width: 900px;
+    background: var(--white);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(10, 37, 64, 0.08);
+    margin: 0 auto 30px auto; /* El margin auto centra la barra horizontalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    color: var(--blue-brand);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-item {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+    color: var(--cyan-accent);
+}
+
+.nav-btn-logout {
+    color: var(--error-text);
+    background: var(--error-bg);
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.nav-btn-logout:hover {
+    background: #fcd5d1;
+}
+
+/* --- Contenedor Principal --- */
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Esto fuerza a que el título quede arriba y la tabla abajo */
+    align-items: center;
+}
+
+/* --- SECCION HOME --- */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.home-logo {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.home-title {
+    color: var(--blue-brand);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.home-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.12);
+    width: 100%;
+    border-top: 5px solid var(--cyan-accent);
+}
+
+.home-description {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.home-actions .btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, var(--blue-brand) 0%, var(--cyan-accent) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.4);
+}
+
+.home-actions .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --- SECCION AFECCIONES --- */
+.afecciones-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+    }
+
+.page-title {
+    color: var(--blue-brand);
+    font-size: 1.8rem;
+}
+
+
+.afecciones-header .btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px;
+    background: linear-gradient(90deg, var(--blue-brand) 0%, var(--cyan-accent) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.afecciones-header .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.4);
+}
+
+.afecciones-header .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --- Tabla Contenedora --- */
+.table-responsive {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(10, 37, 64, 0.08);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.afecciones-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.afecciones-table th {
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.afecciones-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+    color: var(--text-dark);
+}
+
+.afecciones-table tr:hover {
+    background-color: #f8fafc;
+}
+
+/* --- Contenido de la tabla --- */
+.table-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    }
+
+.no-img {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-style: italic;
+    }
+
+.fw-bold {
+    font-weight: 600;
+    color: var(--blue-brand);
+}
+
+.tag-sintoma {
+    color: var(--cyan-accent);
+    font-weight: 600;
+}
+
+/* --- Celda de Acciones y Botones --- */
+.action-cell {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-ia {
+    background: var(--cyan-accent);
+    color: var(--white);
+    }
+.btn-ia:hover { background: #008eb0; }
+
+.btn-outline {
+    border: 1px solid var(--cyan-accent);
+    color: var(--cyan-accent);
+    background: transparent;
+}
+.btn-outline:hover {
+    background: var(--cyan-accent);
+    color: var(--white);
+}
+
+.btn-edit {
+    background: #f1f5f9;
+    color: #475569;
+    }
+.btn-edit:hover { background: #e2e8f0; }
+
+.btn-danger {
+    background: var(--error-bg);
+    color: var(--error-text);
+}
+.btn-danger:hover { background: #fcd5d1; }
+
+.badge-success {
+    font-size: 0.75rem;
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: 1px solid #bbf7d0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px !important;
+    color: #64748b !important;
+}
+
+/* --- SECCION CARGA, EDICION Y FORM DIAGNOSTICO --- */
+.form-container {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.form-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.form-card {
+    background: var(--white);
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.12);
+    border-top: 5px solid var(--cyan-accent);
+}
+
+.vipesan-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--blue-brand);
+    font-size: 0.95rem;
+}
+
+/* Miniatura de la imagen actual en Editar */
+.current-image-box {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    align-items: flex-start; /* Para que la imagen quede a la izquierda */
+}
+
+.preview-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #cbd5e1;
+    margin-top: 10px;
+}
+
+/* Estilos de los inputs */
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical; /* Permite estirar el textarea solo hacia abajo */
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    border-color: var(--cyan-accent);
+    box-shadow: 0 0 0 3px rgba(0, 168, 204, 0.2);
+}
+
+/* Caja especial para el input de archivo */
+.file-group {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1.5px dashed #cbd5e1;
+}
+
+.file-input {
+    font-size: 0.9rem;
+    color: #64748b;
+    cursor: pointer;
+}
+
+/* Botones alineados a la derecha */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Ajuste fino para que el botón cancelar tenga el mismo tamaño */
+.btn-close {
+    padding: 12px 28px;
+    background: var(--blue-brand);
+    text-decoration: none;
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-close:hover {
+    background: var(--error-text);
+    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.3);
+}
+
+/* Botón específico para guardar formularios */
+.btn-save {
+    padding: 12px 28px;
+    background: var(--blue-brand);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+    background: var(--cyan-accent);
+    box-shadow: 0 5px 15px rgba(0, 168, 204, 0.3);
+}
+
+/* Transforma el botón nativo de "Seleccionar archivo" */
+.file-input::file-selector-button {
+    background: var(--blue-dark);
+    color: var(--white);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background 0.2s ease;
+}
+
+.file-input::file-selector-button:hover {
+    background: var(--cyan-accent);
+}

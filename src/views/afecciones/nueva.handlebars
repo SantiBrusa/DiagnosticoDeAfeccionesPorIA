@@ -1,33 +1,40 @@
-<h1>Cargar Afecciones</h1>
+<div class="form-container">
+  <div class="form-header">
+    <h1 class="page-title">Cargar Afección</h1>
+  </div>
 
-{{#if error}} <p>{{error}}</p> {{/if}}
+  <div class="form-card">
+    {{#if error}}
+      <div class="error-msg">{{error}}</div>
+    {{/if}}
 
-<form action="/afecciones" method="POST" enctype="multipart/form-data">
-  <input
-    type="text"
-    name="nombre"
-    value="{{valores.nombre}}"
-    placeholder="Ingresa tu nombre"
-    required
-  />
+    <form action="/afecciones" method="POST" enctype="multipart/form-data" class="vipesan-form">
+      
+      <div class="form-group">
+        <label for="nombre">Nombre y Apellido</label>
+        <input type="text" id="nombre" name="nombre" value="{{valores.nombre}}" placeholder="Ej. Ezequiel Perez, Franco Santillan..." required />
+      </div>
 
-  <input
-    type="text"
-    name="sintomas"
-    value="{{valores.sintomas}}"
-    placeholder="picazon, enrojecimiento, despelechamiento"
-    required
-  />
+      <div class="form-group">
+        <label for="sintomas">Síntomas</label>
+        <input type="text" id="sintomas" name="sintomas" value="{{valores.sintomas}}" placeholder="Ej. picazón, enrojecimiento, escamas (separados por coma)" required />
+      </div>
 
-  <textarea
-    name="descripcion"
-    rows="4"
-    required
-  >{{valores.descripcion}}</textarea>
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="4" placeholder="Detalles o notas sobre la afección..." required>{{valores.descripcion}}</textarea>
+      </div>
 
-  <input type="file" name="image" accept="image/*" />
+      <div class="form-group file-group">
+        <label for="image">Imagen de referencia</label>
+        <input type="file" id="image" name="image" accept="image/*" class="file-input" />
+      </div>
 
-  <button type="submit">Guardar</button>
-  <a href="/afecciones">Cancelar</a>
+      <div class="form-actions">
+        <a href="/afecciones" class="btn-close">Cancelar</a>
+        <button type="submit" class="btn-save">Guardar</button>
+      </div>
 
-</form>
+    </form>
+  </div>
+</div>
