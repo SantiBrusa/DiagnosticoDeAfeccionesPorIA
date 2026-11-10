@@ -13,7 +13,7 @@
         <p><strong>Recomendaciones:</strong> {{afeccion.diagnostico.recomendaciones}}</p>
         <p><strong>Consultar médico:</strong>
           {{#if afeccion.diagnostico.consultar_medico}}Sí{{else}}No{{/if}}</p>
-        <p><small class="fecha-txt">Diagnosticada el {{fechaDiagnostico}}</small></p>
+        <p><strong class="fecha-txt">Diagnosticada el: </strong>{{formatFecha afeccion.diagnostico.fecha}}</p>
       {{else}}
         <div class="ia-loading">Analizando con IA...</div>
       {{/if}}
@@ -41,7 +41,14 @@
       ["Gravedad", datos.gravedad],
       ["Recomendaciones", datos.recomendaciones],
       ["Consultar médico", datos.consultar_medico ? "Sí" : "No"],
-      ["Diagnosticada el", new Date(datos.fecha).toLocaleString("es-AR")],
+      ["Diagnosticada el: ", new Date(datos.fecha).toLocaleString("es-AR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      })],
     ];
     lineas.forEach(([titulo, valor]) => {
       const p = document.createElement("p");
